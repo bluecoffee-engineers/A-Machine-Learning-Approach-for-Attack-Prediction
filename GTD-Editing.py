@@ -19,5 +19,17 @@ dataset.drop(['specificity','vicinity','doubtterr','corp1','nperpcap','dbsource'
 dataset.drop(['iyear','imonth','iday','eventid','extended'],axis=1,inplace=True)
 dataset.drop(['latitude','longitude','ishostkid','country_txt','region_txt','city','attacktype1_txt','targtype1_txt','targsubtype1_txt','natlty1_txt','weapsubtype1_txt','weaptype1_txt','target1'],axis=1,inplace=True)
 dataset.drop(['individual','guncertain1','nperps'],axis=1,inplace=True)
+#dropping the rows with Nan values for the remaining columns 
 dataset.dropna(how='any',inplace=True)
+#Converting the obtained dataframe into a csv file by calling it GTD_Purified.csv
 dataset.to_csv("/Users/kushankurghosh/Documents/ML IT- Files/Project/GTD_Purified.csv")
+#Encoding The column Provstate which contained text values
+le = LabelEncoder()
+x = dataset.iloc[:,2:3]
+x = le.fit_transform(x)
+#Encoding The column Gname which contained text values
+y = dataset.iloc[:,9:10]
+y = le.fit_transform(y)
+#Replacing the columns Provstate and Gname with the encoded values of each type
+dataset['provstate']=x
+dataset['gname']=y
