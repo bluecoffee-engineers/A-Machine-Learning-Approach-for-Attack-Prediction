@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
-#importing the raw Global Terrorism Database
+#importing the raw Global Terrorism Database and storing it in datsaset
 dataset = pd.read_csv("/Users/kushankurghosh/Documents/ML(IT)- Files/Project/Global Terrorism Database.csv")
 dataset.isnull().sum()
-#Dropping Columns one by one
+#Dropping Columns one by one from dataset where the csv file is stored 
 dataset.drop(['approxdate','resolution','location','alternative','alternative_txt','propextent','propextent_txt','propvalue','propcomment','nhostkid','nhostkidus','nhours','ndays','divert','kidhijcountry','ransom','ransomamt','ransomamtus','ransompaid','ransompaidus','ransomnote','hostkidoutcome','hostkidoutcome_txt','nreleased','addnotes','scite2','scite3','related'], axis=1, inplace=True)
 dataset.drop(['claim2','claimmode2','claimmode2_txt','claim3','claimmode3','claimmode3_txt','compclaim','weaptype2','weaptype2_txt','weapsubtype2','weapsubtype2_txt'],axis=1,inplace=True)
 dataset.drop(['gsubname3','motive','guncertain2','guncertain3','claimmode','claimmode_txt'],axis=1,inplace=True)
@@ -33,3 +33,13 @@ y = le.fit_transform(y)
 #Replacing the columns Provstate and Gname with the encoded values of each type
 dataset['provstate']=x
 dataset['gname']=y
+#Splitting Dependent and independent variables to apply the algorithm
+y_df = dataset.iloc[:,5]
+x_df = dataset.iloc[:,[0,1,2,3,4,6,7,8,9,10,11,12,13,14]]
+#Splitting Training and Testing Dataset
+xtrain,xtest,ytrain,ytest = train_test_split(x_df,y_df, test_size=0.05, random_state=600)
+#Applying logistic regression algorithm
+logReg =LogisticRegression()
+logReg.fit(xtrain,ytrain)
+ypred = logReg.predict(xtest)
+accuracy_score(ytest,ypred)
