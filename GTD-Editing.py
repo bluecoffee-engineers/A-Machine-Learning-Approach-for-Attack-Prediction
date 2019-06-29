@@ -40,8 +40,8 @@ y = le.fit_transform(y)
 dataset['provstate']=x
 dataset['gname']=y
 #Splitting Dependent and independent variables to apply the algorithm
-y_df = dataset.iloc[:,5]
-x_df = dataset.iloc[:,[0,1,2,3,4,6,7,8,9,10,11,12,13,14]]
+y_df = dataset.iloc[:,10]
+x_df = dataset.iloc[:,[6,7,5,11,12,13]]
 #Splitting Training and Testing Dataset
 xtrain,xtest,ytrain,ytest = train_test_split(x_df,y_df, test_size=0.05, random_state=600)
 #Applying logistic regression algorithm
