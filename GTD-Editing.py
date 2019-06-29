@@ -20,6 +20,7 @@ dataset.drop(['specificity','vicinity','doubtterr','corp1','nperpcap','dbsource'
 dataset.drop(['iyear','imonth','iday','eventid','extended'],axis=1,inplace=True)
 dataset.drop(['latitude','longitude','ishostkid','country_txt','region_txt','city','attacktype1_txt','targtype1_txt','targsubtype1_txt','natlty1_txt','weapsubtype1_txt','weaptype1_txt','target1'],axis=1,inplace=True)
 dataset.drop(['individual','guncertain1','nperps'],axis=1,inplace=True)
+dataset.drop(['country','region','provstate','success','suicide','natlty1','gname','property'],axis=1,inplace=True)
 #dropping the rows with Nan values for the remaining columns 
 dataset.dropna(how='any',inplace=True)
 #Converting the obtained dataframe into a csv file by calling it GTD_Purified.csv
