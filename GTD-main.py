@@ -17,3 +17,16 @@ logReg =LogisticRegression()
 logReg.fit(xtrain,ytrain)
 ypred = logReg.predict(xtest)
 accuracy_score(ytest,ypred)
+import seaborn as sea
+import matplotlib.pyplot as plt
+#To view the different kinds of attack types
+sea.countplot(dataset["attacktype1"])
+#To view the different types of weapon types
+sea.countplot(dataset["weaptype1"])
+#To view the different classes of people
+sea.countplot(dataset["property"])
+plt.title("Property")
+#A boxplot to show the number of people dying beacause of suicide.
+sea.boxplot(x="suicide",y="weaptype1",data=dataset)
+#A countplot for the number of operations to be successfull or unsuccessful
+sea.countplot(dataset["success"])
